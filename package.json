@@ -1,12 +1,13 @@
 {
   "name": "acme-user-departments",
   "version": "1.0.0",
-  "description": "",
+  "description": "- npm i - nodemon server.js",
   "main": "db.js",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^7.18.1"
+    "pg": "^7.18.1",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,5 +16,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanhall999/acme-user-departments-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryanhall999/acme-user-departments-api/issues"
+  },
+  "homepage": "https://github.com/ryanhall999/acme-user-departments-api#readme"
 }
