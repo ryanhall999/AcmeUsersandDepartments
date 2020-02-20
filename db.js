@@ -6,22 +6,37 @@ client.connect();
 
 const sync = async () => {
 	const SQL = `DROP TABLE IF EXISTS users;
+  DROP TABLE IF EXISTS departments;
 	CREATE TABLE users(
 	  id SERIAL,
-	  name VARCHAR
+	  name VARCHAR NOT NULL
+  );
+  CREATE TABLE departments(
+	  id UUID,
+	  name VARCHAR NOT NULL
 	);
-	INSERT INTO users (name) VALUES ('Potato');`;
+  INSERT INTO users (name) VALUES ('Potato');
+  INSERT INTO departments (id, name) VALUES ('${UUID()}','Potato');`;
 	return await client.query(SQL);
 	//DROP and RECREATE TABLES
 	//remember "departmentId" will need to be in quotes
 };
 
 const readDepartments = async () => {
-	return [];
+	const SQL = `SELECT * FROM departments`;
+	const response = await client.query(SQL);
+	return response.rows;
 };
 
 const readUsers = async () => {
-	return [];
+	const SQL = `SELECT * FROM users`;
+	const response = await client.query(SQL);
+	return response.rows;
+};
+
+const createUser = async name => {
+	const SQL = `INSERT INTO users(id, name) values( $1, $2)`;
+	await client.query(SQL, [uuid(), name]);
 };
 
 module.exports = {
