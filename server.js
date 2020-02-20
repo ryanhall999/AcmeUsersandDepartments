@@ -17,6 +17,13 @@ app.get("/api/users", (req, res, next) => {
 		.catch(next);
 });
 
+app.post("/api/users", (req, res, next) => {
+	console.log(req.params);
+	db.createUser()
+		.then(users => res.send(users))
+		.catch(next);
+});
+
 app.use((req, res, next) => {
 	next({ status: 404, message: `page not found - ${req.method} - ${req.url}` });
 });
