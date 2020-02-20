@@ -2,13 +2,15 @@ const { Client } = require("pg");
 const UUID = require("uuid");
 const client = new Client("postgres://localhost/AcmeUserDepartments");
 
+client.connect();
+
 const sync = async () => {
 	const SQL = `DROP TABLE IF EXISTS users;
-	  CREATE TABLE users(
-	    id UUID PRIMARY KEY,
-	    name VARCHAR
-	  );
-	  INSERT INTO users (name) VALUES ('Potato');`;
+	CREATE TABLE users(
+	  id SERIAL,
+	  name VARCHAR
+	);
+	INSERT INTO users (name) VALUES ('Potato');`;
 	return await client.query(SQL);
 	//DROP and RECREATE TABLES
 	//remember "departmentId" will need to be in quotes
